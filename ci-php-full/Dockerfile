@@ -1,15 +1,15 @@
-FROM trifs/ci-php-base:5.6
+FROM trifs/ci-php-base:5.6.30
 MAINTAINER Igor Ajdisek <igor@3fs.si>
 
 # Install Cassandra PHP driver 
 RUN sudo apt-get install -y cmake
 RUN git clone https://github.com/datastax/php-driver.git && \
     cd php-driver && \
-    git reset --hard v1.0.1 && \
+    git reset --hard v1.2.2 && \
     git submodule update --init && \
     cd ext && \
     sudo ./install.sh
-RUN echo extension=cassandra.so | sudo tee /etc/php5/cli/conf.d/cassandra.ini
+RUN echo extension=cassandra.so | sudo tee /etc/php/5.6/cli/conf.d/cassandra.ini
 
 # Ensure cqlsh is available 
 RUN curl -O http://archive.apache.org/dist/cassandra/2.0.16/apache-cassandra-2.0.16-bin.tar.gz && \
@@ -26,4 +26,7 @@ RUN git clone https://github.com/phalcon/cphalcon.git && \
     git reset --hard phalcon-v1.3.2 && \
     cd build && \
     sudo ./install
-RUN echo extension=phalcon.so | sudo tee /etc/php5/cli/conf.d/phalcon.ini
+RUN echo extension=phalcon.so | sudo tee /etc/php/5.6/cli/conf.d/phalcon.ini
+
+# Enable php-redis
+RUN sudo apt-get install -y php-redis

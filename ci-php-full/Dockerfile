@@ -30,3 +30,5 @@ RUN echo extension=phalcon.so | sudo tee /etc/php/5.6/cli/conf.d/phalcon.ini
 
 # Enable php-redis
 RUN sudo apt-get install -y php-redis
+
+RUN sudo apt-get install -y zip unzip php5.6-zip php5.6-xml php5.6-soap

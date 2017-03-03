@@ -18,7 +18,7 @@ RUN curl -O http://archive.apache.org/dist/cassandra/2.0.16/apache-cassandra-2.0
     sudo mv apache-cassandra-2.0.16/pylib /usr/local/ && \
     rm -rf apache-cassandra-2.0.16* && \
     sudo apt-get install -y python-dev python-pip && \
-    sudo pip install cql
+    sudo pip install cql==1.4.0 thrift==0.9.3
 
 # Legacy: compile phlacon support for PHP 
 RUN git clone https://github.com/phalcon/cphalcon.git && \
